@@ -15,9 +15,11 @@
         <span><h4>Enter City</h4> </span><input id="myText" type="text"><br><br>
         <button onclick="getData()" id="hihihi">See Weather</button>
         <button onclick="reload()" style="display: none;" id="hihi">See Weather for Another City</button>
+        <h1 id="weather"></h1>
         <h1 id="temperature"></h1>
         <h1 id="mainWeather"></h1>
         <h1 id="mainWeather1"></h1>
+        
         <div id="issMap"></div>
     </center>
  <script>
@@ -29,12 +31,14 @@
     const url1 = first+x+Last;
      const response= await fetch(url1)
      const data= await response.json();
-     const {main,coord}=data;
+     const {main,coord,weather}=data;
      var lat=(coord.lat)
      var lon=(coord.lon)
+     var weathermain=(data.weather[0].description)
      document.getElementById("temperature").innerHTML="It is ".concat((main.temp), "°F");
      document.getElementById("mainWeather").innerHTML="min temperature is ".concat((main.temp_min), "°F");
      document.getElementById("mainWeather1").innerHTML="max temperature is ".concat((main.temp_max), "°F");
+     document.getElementById("weather").innerHTML=weathermain;
      const mymap = L.map('issMap').setView([lat, lon], 14);
       const attribution =
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
