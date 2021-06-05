@@ -19,7 +19,8 @@
         <h1 id="temperature"></h1>
         <h1 id="mainWeather"></h1>
         <h1 id="mainWeather1"></h1>
-        
+        <h1 id="error"></h1>
+       
         <div id="issMap"></div>
     </center>
  <script>
@@ -31,15 +32,27 @@
     const url1 = first+x+Last;
      const response= await fetch(url1)
      const data= await response.json();
-     const {main,coord,weather}=data;
+     const {main,coord,weather,cod}=data;
+     var check=(cod)
+     console.log(check);
+     if (check == 404) {
+    document.getElementById("error").innerHTML="Sorry your city was not found 😞";
+    document.getElementById("hihi").style.display="inline-block";
+      document.getElementById("hihihi").style.display="none";
+      document.getElementById("myText").style.display="none";
+}
      var lat=(coord.lat)
      var lon=(coord.lon)
      var weathermain=(data.weather[0].description)
-     document.getElementById("temperature").innerHTML="It is ".concat((main.temp), "°F");
+     var iconvar=(data.weather[0].icon)
+     
+   
+   document.getElementById("temperature").innerHTML="It is ".concat((main.temp), "°F");
      document.getElementById("mainWeather").innerHTML="min temperature is ".concat((main.temp_min), "°F");
      document.getElementById("mainWeather1").innerHTML="max temperature is ".concat((main.temp_max), "°F");
      document.getElementById("weather").innerHTML=weathermain;
      const mymap = L.map('issMap').setView([lat, lon], 14);
+
       const attribution =
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
@@ -52,7 +65,8 @@
       document.getElementById("hihi").style.display="inline-block";
       document.getElementById("hihihi").style.display="none";
       document.getElementById("myText").style.display="none";
-    }
+    
+   }
      function reload(){
       location.reload();
       
