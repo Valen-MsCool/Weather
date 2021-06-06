@@ -15,7 +15,8 @@
         <span><h4>Enter City</h4> </span><input id="myText" type="text"><br><br>
         <button onclick="getData()" id="hihihi">See Weather</button>
         <button onclick="reload()" style="display: none;" id="hihi">See Weather for Another City</button>
-        <h1 id="weather"></h1>
+        <br><img src="background.png" id="image1" style="height: 100px;" > <h1 id="weather"></h1>
+      
         <h1 id="temperature"></h1>
         <h1 id="mainWeather"></h1>
         <h1 id="mainWeather1"></h1>
@@ -44,9 +45,9 @@
      var lat=(coord.lat)
      var lon=(coord.lon)
      var weathermain=(data.weather[0].description)
-     var iconvar=(data.weather[0].icon)
-     
-   
+     var iconvar=(data.weather[0].icon+".png")
+     document.getElementById("image1").src=iconvar;
+   console.log("iconvar");
    document.getElementById("temperature").innerHTML="It is ".concat((main.temp), "°F");
      document.getElementById("mainWeather").innerHTML="min temperature is ".concat((main.temp_min), "°F");
      document.getElementById("mainWeather1").innerHTML="max temperature is ".concat((main.temp_max), "°F");
@@ -91,6 +92,18 @@ font-family: Verdana;
 color: white;
 font-family: Verdana;
    }
+   .header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background: #555;
+}
+
+.header h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
  </style>  
     </body>
     </html>
